@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS cards(
+    id BIGSERIAL PRIMARY KEY,
+    card_num VARCHAR(16) NOT NULL UNIQUE,
+    owner VARCHAR(100) NOT NULL,
+    expiration_date TIMESTAMP NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    balance NUMERIC(20, 2) NOT NULL
+);
