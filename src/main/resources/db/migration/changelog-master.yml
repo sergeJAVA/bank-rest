@@ -34,3 +34,10 @@ databaseChangeLog:
         - sqlFile:
             path: 005_init_table_roles.sql
             relativeToChangeLogFile: true
+  - changeSet:
+      id: add_user_id_column_in_cards_table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 006_add_user_id_column_in_cards_table.sql
+            relativeToChangeLogFile: true
