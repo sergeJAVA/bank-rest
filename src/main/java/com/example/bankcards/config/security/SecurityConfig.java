@@ -1,4 +1,4 @@
-package com.example.bankcards.config;
+package com.example.bankcards.config.security;
 
 import com.example.bankcards.exception.handler.CustomAccessDeniedHandler;
 import com.example.bankcards.exception.entrypoint.CustomAuthenticationEntryPoint;

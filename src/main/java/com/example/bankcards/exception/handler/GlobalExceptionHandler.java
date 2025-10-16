@@ -1,7 +1,9 @@
 package com.example.bankcards.exception.handler;
 
 import com.example.bankcards.dto.ErrorResponse;
+import com.example.bankcards.exception.CardNotFoundException;
 import com.example.bankcards.exception.CardNumberTakenException;
+import com.example.bankcards.exception.ImpossibleMoneyTransferException;
 import com.example.bankcards.exception.InvalidCardNumberException;
 import com.example.bankcards.exception.RoleNotFoundException;
 import com.example.bankcards.exception.UserNotFoundException;
@@ -65,6 +67,24 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> invalidCardNumber(HttpMessageNotReadableException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(Map.of("error", ex.getMessage()));
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    @ExceptionHandler(ImpossibleMoneyTransferException.class)
+    public ResponseEntity<ErrorResponse> impossibleTransfer(ImpossibleMoneyTransferException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(Map.of("error", ex.getMessage()));
+        return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
+    }
+
+    @ExceptionHandler(CardNotFoundException.class)
+    public ResponseEntity<ErrorResponse> impossibleTransfer(CardNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(Map.of("error", ex.getMessage()));
+        return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> illegalArgument(IllegalArgumentException ex) {
         ErrorResponse errorResponse = new ErrorResponse(Map.of("error", ex.getMessage()));
         return ResponseEntity.badRequest().body(errorResponse);
     }

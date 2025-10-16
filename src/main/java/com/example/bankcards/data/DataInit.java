@@ -6,7 +6,6 @@ import com.example.bankcards.repository.RoleRepository;
 import com.example.bankcards.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -45,4 +44,5 @@ public class DataInit {
             userRepository.save(admin);
         }
     }
+
 }

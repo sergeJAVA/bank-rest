@@ -22,3 +22,7 @@ spring:
 jwt:
   secret: secretkeyPasswordForAuth12312312312313213123123sdfsdf
   life-time: 1800000
+
+scheduling:
+  enabled: true
+  fixedDelay: 3600000

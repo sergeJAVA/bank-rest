@@ -3,10 +3,9 @@ package com.example.bankcards.service;
 import com.example.bankcards.dto.CardDto;
 import com.example.bankcards.dto.CardStatus;
 import com.example.bankcards.dto.request.CreateCardRequest;
-import com.example.bankcards.entity.Card;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 public interface CardService {
 
@@ -20,6 +19,13 @@ public interface CardService {
 
     Page<CardDto> findAllByUserId(Long userId, int page, int size);
 
-    Page<CardDto> findAll();
+    Page<CardDto> findAll(int page, int size);
 
+    void transfer(Long userId,String firstCardNum, String secondCardNum, BigDecimal amount);
+
+    void depositMoney(Long userId, String cardNum, BigDecimal amount);
+
+    void blockCard(Long userId, Long cardId);
+
+    BigDecimal getBalance(Long userId, String cardNum);
 }

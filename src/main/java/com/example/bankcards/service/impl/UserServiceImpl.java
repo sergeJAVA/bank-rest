@@ -1,6 +1,5 @@
 package com.example.bankcards.service.impl;
 
-import com.example.bankcards.dto.CardDto;
 import com.example.bankcards.dto.UserDto;
 import com.example.bankcards.dto.mapper.UserMapper;
 import com.example.bankcards.entity.Role;
@@ -17,10 +16,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
