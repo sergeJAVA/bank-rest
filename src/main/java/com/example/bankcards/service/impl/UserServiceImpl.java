@@ -1,5 +1,6 @@
 package com.example.bankcards.service.impl;
 
+import com.example.bankcards.dto.CardDto;
 import com.example.bankcards.dto.UserDto;
 import com.example.bankcards.dto.mapper.UserMapper;
 import com.example.bankcards.entity.Role;
@@ -11,11 +12,15 @@ import com.example.bankcards.repository.RoleRepository;
 import com.example.bankcards.repository.UserRepository;
 import com.example.bankcards.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +65,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Page<UserDto> findAll(int page, int size) {
+        Page<User> users = userRepository.findAll(PageRequest.of(page, size));
+        return users.map(UserMapper::toDto);
     }
 
     private boolean existUserByUsername(String username) {

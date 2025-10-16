@@ -1,6 +1,6 @@
 package com.example.bankcards.service;
 
-import com.example.bankcards.dto.AuthStatusResponse;
+import com.example.bankcards.dto.response.AuthStatusResponse;
 import com.example.bankcards.dto.request.UserLoginRequest;
 import com.example.bankcards.dto.request.UserRegistrationRequest;
 

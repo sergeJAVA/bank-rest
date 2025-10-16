@@ -1,9 +1,10 @@
 package com.example.bankcards.service.impl;
 
-import com.example.bankcards.dto.AuthStatusResponse;
+import com.example.bankcards.dto.response.AuthStatusResponse;
 import com.example.bankcards.dto.request.UserLoginRequest;
 import com.example.bankcards.dto.request.UserRegistrationRequest;
 import com.example.bankcards.security.CustomUserDetails;
+import com.example.bankcards.security.service.JwtService;
 import com.example.bankcards.service.AuthService;
 import com.example.bankcards.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationProvider provider;
+    private final JwtService jwtService;
 
     @Override
     public AuthStatusResponse signUp(UserRegistrationRequest request) {
@@ -44,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            String token = "generatedToken";
+            String token = jwtService.generateJwtToken(userDetails);
 
             return AuthStatusResponse.builder()
                     .code(HttpStatus.OK.value())

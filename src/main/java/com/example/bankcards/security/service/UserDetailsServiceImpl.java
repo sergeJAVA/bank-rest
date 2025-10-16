@@ -1,7 +1,8 @@
-package com.example.bankcards.security;
+package com.example.bankcards.security.service;
 
 import com.example.bankcards.entity.Role;
 import com.example.bankcards.repository.UserRepository;
+import com.example.bankcards.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
