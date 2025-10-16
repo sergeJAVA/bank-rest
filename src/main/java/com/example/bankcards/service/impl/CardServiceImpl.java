@@ -211,6 +211,9 @@ public class CardServiceImpl implements CardService {
     }
 
     private boolean isValidCardNum(String cardNum) {
+        if (cardNum.length() != 16) {
+            return false;
+        }
         return cardNum.matches("\\d+");
     }
 
