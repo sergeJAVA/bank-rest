@@ -15,7 +15,6 @@ import com.example.bankcards.repository.CardRepository;
 import com.example.bankcards.repository.UserRepository;
 import com.example.bankcards.service.CardService;
 import com.example.bankcards.util.CardSpecifications;
-import com.example.bankcards.util.NumberEncryptionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -79,9 +78,7 @@ public class CardServiceImpl implements CardService {
     public CardDto findById(Long cardId) {
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new CardNotFoundException("Card with id <<" + cardId + ">> not found!"));
-        CardDto cardDto = CardMapper.toDto(card);
-        cardDto.setCardNum(NumberEncryptionUtil.encryptCardNumber(cardDto.getCardNum()));
-        return cardDto;
+        return CardMapper.toDto(card);
     }
 
     @Override
@@ -102,14 +99,16 @@ public class CardServiceImpl implements CardService {
 
     @Transactional
     public void transfer(Long senderId, String firstCardNum, String secondCardNum, BigDecimal amount) {
+
+        if (!isValidCardNum(firstCardNum.trim()) ||
+                !isValidCardNum(secondCardNum.trim())) {
+            throw new InvalidCardNumberException("The card number contains characters that are not numbers!");
+        }
+
         if (!cardNumberVerification(senderId, firstCardNum.trim())) {
             throw new ImpossibleMoneyTransferException("Card with number <<" + firstCardNum + ">> doesn't belong to this user!");
         }
 
-        if (!isValidCardNum(firstCardNum.trim()) ||
-            !isValidCardNum(secondCardNum.trim())) {
-            throw new InvalidCardNumberException("The card number contains characters that are not numbers!");
-        }
         Card firstCard = cardRepository.findByCardNum(firstCardNum.trim())
                 .orElseThrow(() -> new CardNotFoundException("Card with number <<" + firstCardNum + ">> not found!"));
         Card secondCard = cardRepository.findByCardNum(secondCardNum.trim())
