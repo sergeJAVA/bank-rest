@@ -1,6 +1,6 @@
 package com.example.bankcards.exception.handler;
 
-import com.example.bankcards.dto.ErrorResponse;
+import com.example.bankcards.dto.response.ErrorResponse;
 import com.example.bankcards.exception.CardNotFoundException;
 import com.example.bankcards.exception.CardNumberTakenException;
 import com.example.bankcards.exception.ImpossibleMoneyTransferException;
