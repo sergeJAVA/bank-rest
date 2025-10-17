@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cards-table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 001_create_table_cards.sql
+            relativeToChangeLogFile: true
+  - changeSet:
+      id: create-roles-table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 002_create_table_roles.sql
+            relativeToChangeLogFile: true
+  - changeSet:
+      id: create-users-table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 003_create_table_users.sql
+            relativeToChangeLogFile: true
+  - changeSet:
+      id: create-user-roles-table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 004_create_table_user_roles.sql
+            relativeToChangeLogFile: true
+  - changeSet:
+      id: init-table-roles
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 005_init_table_roles.sql
+            relativeToChangeLogFile: true
+  - changeSet:
+      id: add_user_id_column_in_cards_table
+      author: sergej
+      changes:
+        - sqlFile:
+            path: 006_add_user_id_column_in_cards_table.sql
+            relativeToChangeLogFile: true

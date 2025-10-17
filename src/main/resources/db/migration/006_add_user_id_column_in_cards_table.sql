@@ -1,0 +1,3 @@
+ALTER TABLE cards ADD COLUMN user_id BIGINT;
+
+ALTER TABLE cards ADD CONSTRAINT fk_cards_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;

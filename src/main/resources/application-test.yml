@@ -1,14 +1,6 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: "bankcards"
-  datasource:
-    url: jdbc:postgresql://localhost:5432/bankDB
-    username: root
-    password: pass
-    driver-class-name: org.postgresql.Driver
   jpa:
     database: POSTGRESQL
     database-platform: org.hibernate.dialect.PostgreSQLDialect
