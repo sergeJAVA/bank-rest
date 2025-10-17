@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/bank/users")
+@RequestMapping("/api/v1/bank/users")
 @RequiredArgsConstructor
 @Tag(name = "Управление пользователями", description = "Все операции требуют JWT для доступа к ним.")
 public class UserController {

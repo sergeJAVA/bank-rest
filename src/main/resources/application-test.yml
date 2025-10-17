@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: "bankcards"
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    enabled: true
+    change-log: 'classpath:db/migration/changelog-master.yml'
+
+jwt:
+  secret: secretkeyPasswordForAuth12312312312313213123123sdfsdf
+  life-time: 1800000
+
+scheduling:
+  enabled: true
+  fixedDelay: 3600000
