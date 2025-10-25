@@ -1,4 +1,11 @@
 services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    networks:
+      - my-network
+
   postgres:
     container_name: bankPostgresDB
     image: postgres:17.4
@@ -10,7 +17,13 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5434:5432"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
 
 volumes:
   postgres:
