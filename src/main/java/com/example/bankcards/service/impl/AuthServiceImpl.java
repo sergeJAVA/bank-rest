@@ -10,7 +10,7 @@ import com.example.bankcards.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -26,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationProvider provider;
+    private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
     @Override
@@ -42,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthStatusResponse signIn(UserLoginRequest request) {
         try {
-            Authentication authentication = provider.authenticate(
+            Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

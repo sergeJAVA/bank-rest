@@ -5,7 +5,7 @@ spring:
   application:
     name: "bankcards"
   datasource:
-    url: jdbc:postgresql://postgres:5434/bankDB
+    url: jdbc:postgresql://localhost:5434/bankDB
     username: root
     password: pass
     driver-class-name: org.postgresql.Driver
